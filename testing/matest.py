@@ -28,8 +28,13 @@ for ma in ma_day:
 
     AAPL[column_name] = pd.rolling_mean(AAPL['Adj Close'],ma)
 
-AAPL[['Adj Close', 'MA 10', 'MA 20', 'MA 50']].plot(subplots=False,figsize=(10,4))
+#AAPL[['Adj Close', 'MA 10', 'MA 20', 'MA 50']].plot(subplots=False,figsize=(10,4))
 
+AAPL['Daily Return'] = AAPL['Adj Close'].pct_change()
+
+#AAPL['Daily Return'].plot(figsize=(10,4),legend=True,linestyle='--',marker='o')
+
+sns.distplot(AAPL['Daily Return'].dropna(),bins=100,color = 'purple')
 
 #AAPL['Volume'].plot(legend=True,figsize=(10,4))
 plt.show()
